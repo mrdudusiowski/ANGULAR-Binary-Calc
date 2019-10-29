@@ -1,0 +1,21 @@
+<div class="title">{{title}}</div>
+
+<div id="container">
+<input #box (keyup)="onKey(box.value)" id="screen" value="{{value}}">
+
+<div class="buttons">
+    <button (click)="addZero()">0</button>
+    <button (click)="addOne()">1</button>
+</div>
+
+<div class="buttons">
+    <button (click)="addBin()">+</button>
+    <button (click)="subBin()">-</button>
+</div>
+
+<div class="button-equals">
+    <button (click)="endBin()">=</button>
+    <button (click)="clearBin()">C</button>
+</div>
+<p>{{name}}</p>
+</div>

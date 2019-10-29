@@ -1,0 +1,79 @@
+html{
+    margin: 0;
+    padding: 0;
+}
+body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#container{
+    width: 375px;
+    display: block;
+    height: 240px;
+    border: solid black 2px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: #55afa1;
+}
+.title{
+    font-family: 'Roboto', sans-serif;
+    font-size: 90px;
+    margin-top: 4%;
+    margin-bottom: 4%;
+    text-align: center;
+    color: #164c477a;
+    font-weight: bold;
+}
+
+#screen{
+    border:solid black 2px;
+    width: 325px;
+    height: 50px;
+    margin-top: 20px;
+    -moz-box-shadow:    inset 0 0 10px #000000;
+    -webkit-box-shadow: inset 0 0 10px #000000;
+    box-shadow:         inset 0 0 10px #000000;
+    font-size: 25px;
+    text-align:right;
+    text-decoration-style: bold;
+    color: transparent;
+    text-shadow: 0 0 0 black;
+    font-family: 'Quantico', sans-serif;
+}
+
+.buttons{
+    width: 50%;
+    float: left;
+    margin-top: 20px;
+}
+
+.buttons > button{
+    width: 80px;
+    height: 50px;
+    margin: 2px;
+    background-color: white;
+    border:solid black 0.5px;
+    -moz-box-shadow:    inset 0 0 5px #000000;
+    -webkit-box-shadow: inset 0 0 5px #000000;
+    box-shadow:         inset 0 0 5px #000000;
+}
+
+.button-equals{
+    width: 100%;
+    float: left;
+    margin-top: 20px;
+}
+
+.button-equals > button{
+    width: 175px;
+    height: 50px;
+    margin: 2px;
+    background-color: white;
+    border:solid black 0.5px;
+    -moz-box-shadow:    inset 0 0 5px #000000;
+    -webkit-box-shadow: inset 0 0 5px #000000;
+    box-shadow:         inset 0 0 5px #000000;
+}

@@ -1,0 +1,29 @@
+/* You can add global styles to this file, and also import other style files */
+html{
+    margin: 0;
+    padding: 0;
+}
+body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #599e94;
+}
+
+footer{
+    width: 100%;
+    height: 3%;
+    background-color: #39766f;
+    display: block;
+    bottom: 0;
+    position: absolute;
+    text-align: center;
+    margin: 0 auto;
+    padding-top: 14px;
+}
+
+.copirights{
+    font-family: 'Roboto Condensed', sans-serif;
+    color: white;
+}
