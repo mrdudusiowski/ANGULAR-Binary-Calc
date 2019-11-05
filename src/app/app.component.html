@@ -1,7 +1,7 @@
 <div class="title">{{title}}</div>
 
 <div id="container">
-<input #box (keyup)="onKey(box.value)" id="screen" value="{{value}}">
+<input #box (keypress)="onKey($event,box.value)" id="screen" value="{{value}}" placeholder="0">
 
 <div class="buttons">
     <button (click)="addZero()">0</button>
@@ -18,4 +18,5 @@
     <button (click)="clearBin()">C</button>
 </div>
 <p>{{name}}</p>
+<p>{{result}}</p>
 </div>

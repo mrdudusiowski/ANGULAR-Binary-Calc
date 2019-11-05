@@ -10,43 +10,75 @@ export class AppComponent {
   title = 'Binary Calculator';
   value= '';
   name= '';
-  values = [];
-  counter = 0;
-  
-  onKey(value: string){
+  result=0;
+  stringResult='';
+  signTab=[];
+  i=0;
+
+  onKey(ev: KeyboardEvent, value: string){
+    console.log(ev);
+    if(ev.key !== "0" && ev.key !== "1"){
+      ev.preventDefault();
+    }
+
     this.value= value;
   }
+
 
   addZero(event: any){
     this.value += '0';
   }
 
   addOne(event: any){
-    this.value += '1'
+    this.value += '1';
   }
 
 
-  addBin(event: any){
-      this.values[this.counter]=this.value;
-      this.value='';
-      this.counter++;                 //Pomyśleć czy nie dodawać od razu :)
-      this.values[this.counter]="+";
-      this.counter++;
-  }
+  addBin(event: any){     
+      if(this.value !== '0' && this.value !== ''){
+        this.result += parseInt(this.value,2);
+        this.value='';
+      }
+      else{
+        this.result+=0;
+      }
+      this.signTab[this.i]+='+';
+      this.i++;
+     }
+
 
   subBin(event: any){
-    this.values[this.counter]=this.value;
-    this.value='';
-    this.counter++;
-    this.values[this.counter]="-";
-    this.counter++;
+    if(this.value !== '0' && this.value !== ''){
+      this.result -= parseInt(this.value,2);
+      this.value='';
+    }
+    else{
+      this.result+=0;
+    }
+    this.signTab[this.i]+='-';
+    this.i++;
   }
 
   clearBin(event: any){
     this.value= '';
     this.name= '';
-    this.values = [];
-    this.counter = 0;
+    this.result=0;
+    this.signTab = [];
+    this.i=0;
+  }
+
+  endBin(event: any){
+    if(this.signTab[(this.signTab.length)-1]=='+'){
+      this.result += parseInt(this.value,2);
+    }
+    else{
+      this.result -= parseInt(this.value,2);  
+    }
+    this.stringResult=this.result.toString();
+    this.value=parseInt(this.stringResult,10).toString(2);
+
+    this.signTab = [];
+    this.i=0;
   }
 
   // onChange($event){
