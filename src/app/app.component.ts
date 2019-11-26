@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { TouchSequence } from 'selenium-webdriver';
+import { IfStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-root',
@@ -8,22 +9,18 @@ import { TouchSequence } from 'selenium-webdriver';
 })
 export class AppComponent {
   title = 'Binary Calculator';
-  value= '';
-  name= '';
-  result=0;
-  stringResult='';
-  signTab=[];
-  i=0;
+  value = '';
+  values = [];
+  binary = '';
+  decimal = 0;
 
   onKey(ev: KeyboardEvent, value: string){
     console.log(ev);
-    if(ev.key !== "0" && ev.key !== "1"){
+    if(ev.key != "0" && ev.key != "1"){
       ev.preventDefault();
     }
-
     this.value= value;
   }
-
 
   addZero(event: any){
     this.value += '0';
@@ -35,56 +32,62 @@ export class AppComponent {
 
 
   addBin(event: any){     
-      if(this.value !== '0' && this.value !== ''){
-        this.result += parseInt(this.value,2);
-        this.value='';
+      if(this.values[(length-1)]!='+'|| this.values[(length-1)]!='-'){
+        this.value+='+';
+        this.tableOperation();
       }
       else{
-        this.result+=0;
+        this.value;
       }
-      this.signTab[this.i]+='+';
-      this.i++;
-     }
+  }
 
 
   subBin(event: any){
-    if(this.value !== '0' && this.value !== ''){
-      this.result -= parseInt(this.value,2);
-      this.value='';
+    if(this.values[(length-1)]!='+'|| this.values[(length-1)]!='-'){
+      this.value+='-';
+      this.tableOperation();
     }
     else{
-      this.result+=0;
+      this.value;
     }
-    this.signTab[this.i]+='-';
-    this.i++;
   }
 
   clearBin(event: any){
     this.value= '';
-    this.name= '';
-    this.result=0;
-    this.signTab = [];
-    this.i=0;
+    this.values = [];
+    this.binary = '';
+    this.decimal = 0;
   }
 
-  endBin(event: any){
-    if(this.signTab[(this.signTab.length)-1]=='+'){
-      this.result += parseInt(this.value,2);
-    }
-    else{
-      this.result -= parseInt(this.value,2);  
-    }
-    this.stringResult=this.result.toString();
-    this.value=parseInt(this.stringResult,10).toString(2);
+  endBin(event: any){ 
+    if(this.values.length >= 2){
+        if(this.values[this.values.length] != '-' && this.values[this.values.length] != '+'){
+          this.values[this.values.length] = this.value;
+        }
 
-    this.signTab = [];
-    this.i=0;
+        for(let i=0; i < this.values.length; i++){
+          if(this.values[i]!='+' && this.values[i]!='-'){
+              this.values[i]=parseInt(this.values[i],2);
+          }
+        }
+        if(this.values[1]=='+'){
+          this.decimal = this.values[0]+this.values[2];
+        }
+        if(this.values[1]=='-'){
+          this.decimal = this.values[0]-this.values[2];
+        }
+
+        this.binary = this.decimal.toString(2);
+        this.value = this.binary;
+        this.values = [];
+        this.binary = '';
+        this.decimal = 0;
+    }
   }
 
-  // onChange($event){
-
-  // to do html'a ->   (change)="onChange($event)
-  //   this.name='';
-  //   this.name += event.target.value;
-  // }
+  tableOperation(){
+    this.values[this.values.length]=this.value.substring(0,this.value.length-1);
+    this.values[this.values.length]=this.value[this.value.length-1];
+    this.value='';
+  }
 }
